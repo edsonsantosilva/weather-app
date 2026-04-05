@@ -1,41 +1,40 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import TheCitySelector from '../components/TheCitySelector.vue'
 import { onBeforeMount, ref } from 'vue'
+import { fetchWeather } from '@/service'
+import { convertKeysToCamelCase } from '@/utils/apiUtils.ts'
+import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 
-const APIKEY:string = import.meta.env.VITE_API_KEY
-const APIURL:string = import.meta.env.VITE_API_URL
-
-const data = ref<Record<string, string>[]>([])
+const data = ref<WeatherInformation[]>([])
+const forecastData = ref<WeatherInformation[]>([])
 const error = ref<Error | null | unknown>(null)
 
-const fetchData = async () => {
+const selectCity = (city: string) => {
+  fetchData(city)
+}
+
+const fetchData = async (cityName: string) => {
   try {
-    const baseUrl = APIURL
-    const params = {
-      key: APIKEY,
-      page: '1',
-      q: 'London',
-    }
-
-    const queryString = new URLSearchParams(params).toString()
-    const urlWithParams = `${baseUrl}?${queryString}`
-
-    const response = await fetch(urlWithParams)
+    const response = await fetchWeather(cityName)
     const result = await response.json()
-    console.log(result);
-    data.value = result;
+    console.log(result)
+    data.value = convertKeysToCamelCase(result) as WeatherInformation[]
   } catch (e: unknown) {
-    console.error(e);
+    console.error(e)
     error.value = e
   }
 }
 
-onBeforeMount(() => fetchData());
+onBeforeMount(() => {
+  fetchData('London')
+})
 </script>
 
 <template>
   <main>
-    <TheWelcome />
-    <div>{{data}}</div>
+    <TheCitySelector :selectCity="selectCity" />
+    <div>{{ data }}</div>
+    <div>-------------</div>
+    <div>{{ forecastData }}</div>
   </main>
 </template>

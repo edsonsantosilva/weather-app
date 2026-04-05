@@ -1,0 +1,98 @@
+type Hour = {
+  timeEpoch: number;
+  time: string;
+  tempC: number;
+  tempF: number;
+  isDay: number;
+  condition: {
+    text: string;
+    icon: string;
+    code: number;
+  };
+  windMph: number;
+  windKph: number;
+  windDegree: number;
+  windDir: string;
+  pressureMb: number;
+  pressureIn: number;
+  precipMm: number;
+  precipIn: number;
+  snowCm: number;
+  humidity: number;
+  cloud: number;
+  feelslikeC: number;
+  feelslikeF: number;
+  windchillC: number;
+  windchillF: number;
+  heatindexC: number;
+  heatindexF: number;
+  dewpointC: number;
+  dewpointF: number;
+  willItRain: number;
+  chanceOfRain: number;
+  willItSnow: number;
+  chanceOfSnow: number;
+  visKm: number;
+  visMiles: number;
+  gustMph: number;
+  gustKph: number;
+  uv: number;
+}
+
+type ForecastDay = {
+  astro: Record<string, unknown>
+  date: Date
+  dateEpoch: number;
+  hour: Hour[];
+}
+
+export type WeatherInformation = {
+  forecast: {
+    forecastDay: ForecastDay[]
+  }
+  location: {
+    name: string
+    region: string
+    country: string
+    lat: number
+    lon: number
+    tzId: string
+    localtimeEpoch: number
+    localtime: string
+  }
+  current: {
+    lastUpdatedEpoch: number
+    lastUpdated: string
+    tempC: number
+    tempF: number
+    isDay: number
+    condition: {
+      text: string
+      icon: string
+      code: number
+    }
+    windMph: number
+    windKph: number
+    windDegree: number
+    windDir: string
+    pressureMb: number
+    pressureIn: number
+    precipMm: number
+    precipIn: number
+    humidity: number
+    cloud: number
+    feelslikeC: number
+    feelslikeF: number
+    windchillC: number
+    windchillF: number
+    heatindexC: number
+    heatindexF: number
+    dewpointC: number
+    dewpointF: number
+    visKm: number
+    visMiles: number
+    uv: number
+    gustMph: number
+    gustKph: number
+  }
+}
