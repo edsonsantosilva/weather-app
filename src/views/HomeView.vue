@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import TheCitySelector from '../components/TheCitySelector.vue'
+import WeatherInfo from '../components/WeatherInfo.vue'
 import { onBeforeMount, ref } from 'vue'
 import { fetchWeather } from '@/service'
 import { convertKeysToCamelCase } from '@/utils/apiUtils.ts'
 import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 
-const data = ref<WeatherInformation[]>([])
-const forecastData = ref<WeatherInformation[]>([])
+const data = ref<WeatherInformation | null>(null)
 const error = ref<Error | null | unknown>(null)
 
 const selectCity = (city: string) => {
@@ -17,8 +17,7 @@ const fetchData = async (cityName: string) => {
   try {
     const response = await fetchWeather(cityName)
     const result = await response.json()
-    console.log(result)
-    data.value = convertKeysToCamelCase(result) as WeatherInformation[]
+    data.value = convertKeysToCamelCase(result) as WeatherInformation
   } catch (e: unknown) {
     console.error(e)
     error.value = e
@@ -33,8 +32,6 @@ onBeforeMount(() => {
 <template>
   <main>
     <TheCitySelector :selectCity="selectCity" />
-    <div>{{ data }}</div>
-    <div>-------------</div>
-    <div>{{ forecastData }}</div>
+    <WeatherInfo :weatherData="data" />
   </main>
 </template>

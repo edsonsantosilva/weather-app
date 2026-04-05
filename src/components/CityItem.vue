@@ -11,7 +11,16 @@
   gap: 1rem;
   margin-top: 2rem;
   padding: 1rem;
-  background: #00f;
+  background: var(--color-item-background);
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.item:hover {
+  border-color: var(--color-border-hover);
+  background: var(--color-background-soft);
 }
 
 @media (min-width: 1024px) {

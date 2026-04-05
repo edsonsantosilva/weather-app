@@ -21,12 +21,4 @@ const fetchWeather = async (location: string) => {
   return response
 }
 
-const fetchConditions = async (location: string) => {
-  const CONDITIONS_URL = 'https://www.weatherapi.com/docs/conditions.json'
-  const response = await fetch(CONDITIONS_URL)
-  console.log('conditions', response)
-  // TODO: implement global api error handler
-  return response
-}
-
-export { fetchWeather, fetchConditions }
+export { fetchWeather }

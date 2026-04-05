@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
+import TheThemeSwitcher from './components/TheThemeSwitcher.vue'
 
 const currentTime: number = new Date().getHours()
 const timeGreetingLabel: string = currentTime < 12 ? 'morning' : currentTime < 18 ? 'afternoon' : 'night'
@@ -7,6 +8,7 @@ const username: string = 'edson';
 </script>
 
 <template>
+  <TheThemeSwitcher />
   <h1>Good {{ timeGreetingLabel }}, {{ username }}</h1>
 
   <header>
@@ -37,16 +39,18 @@ nav {
 
 nav a.router-link-exact-active {
   color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
+  font-weight: bold;
 }
 
 nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
+  color: var(--color-link);
+}
+
+nav a:hover {
+  color: var(--color-link-hover);
 }
 
 nav a:first-of-type {
