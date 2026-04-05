@@ -1,7 +1,6 @@
+<script setup lang="ts"></script>
 <template>
-  <div class="item">
-    <slot name="icon"></slot> - <slot></slot>
-  </div>
+  <div class="item"><slot name="icon"></slot> - <slot></slot></div>
 </template>
 
 <style scoped>
@@ -20,7 +19,11 @@
 
 .item:hover {
   border-color: var(--color-border-hover);
-  background: var(--color-background-soft);
+  background: var(--color-hover-city);
+}
+
+.city-selected {
+  background-color: var(--color-selected-city);
 }
 
 @media (min-width: 1024px) {

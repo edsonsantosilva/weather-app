@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import type { WeatherInformation, Hour } from '@/types/WeatherTypes.ts'
+import type { Hour, WeatherInformation } from '@/types/WeatherTypes.ts'
 import { computed } from 'vue'
+import { getTemperatureColor } from '@/utils/tempUtils.ts'
 
 const { weatherData } = defineProps<{
   weatherData: WeatherInformation | null
@@ -51,7 +52,12 @@ const formatTime = (time: string) => {
     </div>
 
     <div class="forecast-container">
-      <div v-for="(hour, index) in forecastHours" :key="hour.timeEpoch" class="forecast-item">
+      <div
+        :class="`forecast-item ${getTemperatureColor(weatherData.current.tempC)}`"
+        v-for="(hour, index) in forecastHours"
+        :key="hour.timeEpoch"
+        class="forecast-item"
+      >
         <p class="time">{{ index === 0 ? 'Now' : formatTime(hour.time) }}</p>
         <img :src="hour.condition.icon" :alt="hour.condition.text" />
         <p class="temp">{{ hour.tempC }}°C</p>
@@ -99,7 +105,6 @@ const formatTime = (time: string) => {
   flex: 1;
   text-align: center;
   padding: 10px;
-  background: var(--color-item-background);
   border-radius: 4px;
   min-width: 80px;
   border: 1px solid var(--color-border);

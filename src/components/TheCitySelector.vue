@@ -7,6 +7,10 @@ const props = defineProps({
     type: Function,
     required: true,
   },
+  selectedCity: {
+    type: String,
+    required: true,
+  },
 })
 
 type City = {
@@ -42,7 +46,12 @@ const selectCity = (cityName: string) => {
 
 <template>
   <div class="city-wrapper">
-    <CityItem v-for="city in listOfCities" :key="city.name" @click="() => selectCity(city.name)">
+    <CityItem
+      :class="selectedCity === city.name ? 'city-selected' : ''"
+      v-for="city in listOfCities"
+      :key="city.name"
+      @click="() => selectCity(city.name)"
+    >
       <template #icon>
         {{ city.icon }}
       </template>

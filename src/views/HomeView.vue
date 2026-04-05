@@ -9,9 +9,11 @@ import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 
 const data = ref<WeatherInformation | null>(null)
 const error = ref<Error | null | unknown>(null)
+const selectedCity = ref<string>('London')
 
 const selectCity = (city: string) => {
   fetchData(city)
+  selectedCity.value = city
 }
 
 const fetchData = async (cityName: string) => {
@@ -26,14 +28,32 @@ const fetchData = async (cityName: string) => {
 }
 
 onBeforeMount(() => {
-  fetchData('London')
+  fetchData(selectedCity.value)
 })
 </script>
 
 <template>
   <main>
-    <TheCitySelector :selectCity="selectCity" />
+    <TheCitySelector :selectCity="selectCity" :selectedCity="selectedCity" />
     <WeatherForecast :weatherData="data" />
     <WeatherDaysForecast :weatherData="data" />
   </main>
 </template>
+
+<style>
+.coldest {
+  background-color: var(--color-coldest);
+}
+
+.average {
+  background-color: var(--color-average);
+}
+
+.warm {
+  background-color: var(--color-warm);
+}
+
+.hot {
+  background-color: var(--color-hot);
+}
+</style>

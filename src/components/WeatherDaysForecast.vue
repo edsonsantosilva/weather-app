@@ -1,48 +1,46 @@
 <script setup lang="ts">
 import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 import { computed } from 'vue'
+import { getTemperatureColor } from '@/utils/tempUtils.ts'
+
+const NOW = new Date()
 
 const props = defineProps<{
   weatherData: WeatherInformation | null
 }>()
 
 const forecastDays = computed(() => {
-  if (
-    !props.weatherData ||
-    !props.weatherData.forecast ||
-    !props.weatherData.forecast.forecastday
-  ) {
-    return []
-  }
-  return props.weatherData.forecast.forecastday
+  const forecastDay = props.weatherData?.forecast?.forecastday
+  if (!forecastDay) return []
+  return forecastDay.map((day) => {
+    return {
+      date: day.date,
+      avgtempC: day.day.avgtempC,
+      avgtempF: day.day.avgtempF,
+      condition: day.day.condition,
+    }
+  })
 })
 
 const getDayName = (dateString: string) => {
   const date = new Date(dateString + 'T00:00:00')
+  if (date.getDay() === NOW.getDay()) return 'Today'
+  if (date.getDay() === NOW.getDay() + 1) return 'Tomorrow'
   return date.toLocaleDateString('en-US', { weekday: 'long' })
 }
 </script>
 
 <template>
-  <div v-if="forecastDays.length >= 3" class="forecast-wrapper">
-    <div class="forecast-box">
-      <p class="label">Today</p>
+  <div class="forecast-wrapper">
+    <div
+      v-for="day in forecastDays"
+      :key="day.date"
+      :class="getTemperatureColor(day?.avgtempC)"
+      class="forecast-box"
+    >
+      <p class="label">{{ getDayName(day.date) }}</p>
       <div class="temp">
-        <span class="value">{{ forecastDays[0]?.day?.avgtempC }}</span>
-        <span class="unit">°C</span>
-      </div>
-    </div>
-    <div class="forecast-box">
-      <p class="label">Tomorrow</p>
-      <div class="temp">
-        <span class="value">{{ forecastDays[1]?.day?.avgtempC }}</span>
-        <span class="unit">°C</span>
-      </div>
-    </div>
-    <div v-if="forecastDays[2]" class="forecast-box">
-      <p class="label">{{ getDayName(forecastDays[2]?.date) }}</p>
-      <div class="temp">
-        <span class="value">{{ forecastDays[2]?.day?.avgtempC }}</span>
+        <span class="value">{{ day?.avgtempC }}</span>
         <span class="unit">°C</span>
       </div>
     </div>
@@ -60,11 +58,14 @@ const getDayName = (dateString: string) => {
 .forecast-box {
   flex: 1;
   padding: 15px;
-  background-color: var(--color-card-background);
   border-radius: 8px;
   box-shadow: 0 2px 8px var(--color-card-shadow);
   text-align: center;
   color: var(--color-text);
+}
+
+.unknown {
+  background-color: var(--color-card-background);
 }
 
 .label {
