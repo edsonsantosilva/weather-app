@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TheCitySelector from '../components/TheCitySelector.vue'
-import WeatherInfo from '../components/WeatherInfo.vue'
+import WeatherForecast from '../components/WeatherForecast.vue'
+import WeatherDaysForecast from '../components/WeatherDaysForecast.vue'
 import { onBeforeMount, ref } from 'vue'
 import { fetchWeather } from '@/service'
 import { convertKeysToCamelCase } from '@/utils/apiUtils.ts'
@@ -32,6 +33,7 @@ onBeforeMount(() => {
 <template>
   <main>
     <TheCitySelector :selectCity="selectCity" />
-    <WeatherInfo :weatherData="data" />
+    <WeatherForecast :weatherData="data" />
+    <WeatherDaysForecast :weatherData="data" />
   </main>
 </template>

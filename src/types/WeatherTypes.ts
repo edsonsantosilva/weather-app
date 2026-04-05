@@ -39,10 +39,38 @@ export type Hour = {
   uv: number;
 }
 
-type ForecastDay = {
+export type Day = {
+  maxtempC: number;
+  maxtempF: number;
+  mintempC: number;
+  mintempF: number;
+  avgtempC: number;
+  avgtempF: number;
+  maxwindMph: number;
+  maxwindKph: number;
+  totalprecipMm: number;
+  totalprecipIn: number;
+  totalsnowCm: number;
+  avgvisKm: number;
+  avgvisMiles: number;
+  avghumidity: number;
+  dailyWillItRain: number;
+  dailyChanceOfRain: number;
+  dailyWillItSnow: number;
+  dailyChanceOfSnow: number;
+  condition: {
+    text: string;
+    icon: string;
+    code: number;
+  }
+  uv: number;
+}
+
+export type ForecastDay = {
   astro: Record<string, unknown>
-  date: Date;
+  date: string;
   dateEpoch: number;
+  day: Day;
   hour: Hour[];
 }
 

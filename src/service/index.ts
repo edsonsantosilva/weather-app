@@ -4,6 +4,7 @@ const APIURL: string = import.meta.env.VITE_API_URL
 const params = {
   key: APIKEY,
   q: '',
+  days: '3'
 }
 
 const generateUrl = (searchParam: string, type: string) => {
