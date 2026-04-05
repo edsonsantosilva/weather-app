@@ -1,15 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import TheThemeSwitcher from './components/TheThemeSwitcher.vue'
-
-const currentTime: number = new Date().getHours()
-const timeGreetingLabel: string = currentTime < 12 ? 'morning' : currentTime < 18 ? 'afternoon' : 'night'
-const username: string = 'edson';
+import TheGreeting from '@/components/TheGreeting.vue'
 </script>
 
 <template>
   <TheThemeSwitcher />
-  <h1>Good {{ timeGreetingLabel }}, {{ username }}</h1>
+  <TheGreeting />
 
   <header>
       <nav>
