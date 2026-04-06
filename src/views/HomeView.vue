@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import NextDaysForecast from '../components/NextDaysForecast.vue'
 import TheCitySelector from '../components/TheCitySelector.vue'
-import WeatherForecast from '../components/WeatherForecast.vue'
-import WeatherDaysForecast from '../components/WeatherDaysForecast.vue'
+import TodayForecast from '../components/TodayForecast.vue'
+import TodayWeather from '@/components/TodayWeather.vue'
 import { onBeforeMount, ref } from 'vue'
 import { fetchWeather } from '@/service'
 import { convertKeysToCamelCase } from '@/utils/apiUtils.ts'
@@ -35,12 +36,38 @@ onBeforeMount(() => {
 <template>
   <main>
     <TheCitySelector :selectCity="selectCity" :selectedCity="selectedCity" />
-    <WeatherForecast :weatherData="data" />
-    <WeatherDaysForecast :weatherData="data" />
+    <div class="weather-wrapper">
+      <div class="today-weather">
+        <TodayWeather :weatherData="data" />
+      </div>
+      <div class="forecast">
+        <div class="today-forecast">
+          <TodayForecast :weatherData="data" />
+        </div>
+        <div class="next-days-forecast">
+          <NextDaysForecast :weatherData="data" />
+        </div>
+      </div>
+    </div>
   </main>
 </template>
 
 <style>
+.weather-wrapper {
+  display: flex;
+  margin-top: 2rem;
+  gap: 1rem;
+  width: 100%;
+  justify-content: stretch;
+}
+
+.today-weather {
+  display: flex;
+  flex-grow: 1;
+  width: 50%;
+  height: 100%;
+}
+
 .coldest {
   background-color: var(--color-coldest);
 }

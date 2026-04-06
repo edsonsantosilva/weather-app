@@ -6,43 +6,39 @@ import TheGreeting from '@/components/TheGreeting.vue'
 </script>
 
 <template>
-  <div class="settings">
-    <TheThemeSwitcher />
-    <TheUnitSwitcher />
-  </div>
-  <TheGreeting />
   <header>
-
-
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
     </nav>
+
+    <div class="settings">
+      <TheThemeSwitcher />
+      <TheUnitSwitcher />
+    </div>
   </header>
+  <TheGreeting />
 
   <RouterView />
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
   width: 100%;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .settings {
+  width: 50%;
   display: flex;
   justify-content: flex-end;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-  display: flex;
+  width: 50%;
 }
 
 nav a.router-link-exact-active {

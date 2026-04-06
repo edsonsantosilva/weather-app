@@ -20,7 +20,6 @@ const forecastHours = computed(() => {
 
   const currentHourIndex = allHours.findIndex((h) => h.timeEpoch >= currentEpoch)
   const startIndex = currentHourIndex === -1 ? 0 : currentHourIndex
-  debugger
 
   const result: Hour[] = []
   const JUMP_ON_HOURS = 2
@@ -44,27 +43,16 @@ const formatTime = (time: string) => {
 </script>
 
 <template>
-  <div v-if="weatherData" class="weather-info">
-    <div class="current-weather">
-      <h2>{{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
-      <div class="temp-now">
-        <span class="value">{{ unit === 'C' ? weatherData.current.tempC : weatherData.current.tempF }}</span>
-        <span class="unit">°{{ unit }}</span>
-      </div>
-      <p class="condition">{{ weatherData.current.condition.text }}</p>
-    </div>
-
-    <div class="forecast-container">
-      <div
-        :class="`forecast-item ${getTemperatureColor(weatherData.current.tempC)}`"
-        v-for="(hour, index) in forecastHours"
-        :key="hour.timeEpoch"
-        class="forecast-item"
-      >
-        <p class="time">{{ index === 0 ? 'Now' : formatTime(hour.time) }}</p>
-        <img :src="hour.condition.icon" :alt="hour.condition.text" />
-        <p class="temp">{{ unit === 'C' ? hour.tempC : hour.tempF }}°{{ unit }}</p>
-      </div>
+  <div v-if="weatherData" class="forecast-container">
+    <div
+      :class="`forecast-item ${getTemperatureColor(weatherData.current.tempC)}`"
+      v-for="(hour, index) in forecastHours"
+      :key="hour.timeEpoch"
+      class="forecast-item"
+    >
+      <p class="time">{{ index === 0 ? 'Now' : formatTime(hour.time) }}</p>
+      <img :src="hour.condition.icon" :alt="hour.condition.text" />
+      <p class="temp">{{ unit === 'C' ? hour.tempC : hour.tempF }}°{{ unit }}</p>
     </div>
   </div>
   <div v-else>
@@ -73,30 +61,6 @@ const formatTime = (time: string) => {
 </template>
 
 <style scoped>
-.weather-info {
-  margin-top: 20px;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: var(--color-card-background);
-  box-shadow: 0 2px 8px var(--color-card-shadow);
-  color: var(--color-text);
-}
-
-.current-weather {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.temp-now {
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-.unit {
-  font-size: 1.5rem;
-  vertical-align: top;
-}
-
 .forecast-container {
   display: flex;
   justify-content: space-between;

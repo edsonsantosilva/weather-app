@@ -1,6 +1,8 @@
 <script setup lang="ts"></script>
 <template>
-  <div class="item"><slot name="icon"></slot> - <slot></slot></div>
+  <div class="item">
+    <slot></slot> - <slot name="icon"></slot>
+  </div>
 </template>
 
 <style scoped>
