@@ -2,7 +2,7 @@
 const currentTime: number = new Date().getHours()
 const timeGreetingLabel: string =
   currentTime < 12 ? 'morning' : currentTime < 18 ? 'afternoon' : 'night'
-const username: string = 'edson'
+const username: string = 'Edson'
 </script>
 
 <template>

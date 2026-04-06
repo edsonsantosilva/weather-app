@@ -28,7 +28,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .settings {
@@ -56,6 +56,7 @@ nav a:hover {
 
 nav a:first-of-type {
   border: 0;
+  padding-left: 0;
 }
 
 @media (min-width: 1024px) {

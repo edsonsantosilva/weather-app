@@ -10,11 +10,9 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2rem;
-  padding: 1rem;
-  background: var(--color-item-background);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
 }

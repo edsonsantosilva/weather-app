@@ -2,6 +2,7 @@
 import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 import { useTemperatureUnit } from '@/composables/useTemperatureUnit'
 import { getTemperatureColor } from '@/utils/tempUtils.ts'
+import { computed } from 'vue'
 
 const { unit } = useTemperatureUnit()
 
@@ -9,7 +10,9 @@ const { weatherData } = defineProps<{
   weatherData: WeatherInformation | null
 }>()
 
-const currentWeather = weatherData?.current
+const currentWeather = computed(() => {
+  return weatherData?.current
+})
 </script>
 
 <template>
@@ -38,9 +41,8 @@ const currentWeather = weatherData?.current
   align-items: center;
   justify-content: space-between;
   text-align: center;
-  padding: 0.5rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px var(--color-card-shadow);
+  padding: 0.5rem 1rem;
+  border-radius: 40px;
   color: var(--color-text);
   width: 100%;
   height: 100%;

@@ -67,11 +67,11 @@ onBeforeMount(() => {
 }
 
 .forecast {
-  width: 70%;
+  width: 80%;
 }
 
 .today-weather {
-  width: 30%
+  width: 20%;
 }
 
 .coldest {

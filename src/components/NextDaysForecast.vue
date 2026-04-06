@@ -41,7 +41,9 @@ const getDayName = (dateString: string) => {
       :class="getTemperatureColor(day?.avgtempC)"
       class="forecast-box"
     >
+      <img :src="day.condition.icon" :alt="day.condition.text" />
       <p class="label">{{ getDayName(day.date) }}</p>
+      <p class="condition-label">{{ day.condition.text }}</p>
       <div class="temp">
         <span class="value">{{ unit === 'C' ? day?.avgtempC : day?.avgtempF }}</span>
         <span class="unit">°{{ unit }}</span>
@@ -61,8 +63,7 @@ const getDayName = (dateString: string) => {
 .forecast-box {
   flex: 1;
   padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px var(--color-card-shadow);
+  border-radius: 30px;
   text-align: center;
   color: var(--color-text);
 }
@@ -72,13 +73,19 @@ const getDayName = (dateString: string) => {
 }
 
 .label {
-  font-weight: bold;
+  font-weight: var(--font-weight-semi-bold);
+  font-size: 1rem;
+}
+
+.condition-label {
+  font-weight: var(--font-weight-semi-bold);
   margin-bottom: 10px;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
+  color: var(--vt-c-text-light-2);
 }
 
 .temp {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: bold;
 }
 

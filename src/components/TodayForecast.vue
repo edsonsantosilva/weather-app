@@ -44,14 +44,13 @@ const formatTime = (time: string) => {
 
 <template>
   <div v-if="weatherData" class="forecast-container">
-    <div
-      :class="`forecast-item ${getTemperatureColor(weatherData.current.tempC)}`"
-      v-for="(hour, index) in forecastHours"
-      :key="hour.timeEpoch"
-      class="forecast-item"
-    >
+    <div v-for="(hour, index) in forecastHours" :key="hour.timeEpoch" class="forecast-item">
       <p class="time">{{ index === 0 ? 'Now' : formatTime(hour.time) }}</p>
-      <img :src="hour.condition.icon" :alt="hour.condition.text" />
+      <img
+        :class="getTemperatureColor(weatherData.current.tempC)"
+        :src="hour.condition.icon"
+        :alt="hour.condition.text"
+      />
       <p class="temp">{{ unit === 'C' ? hour.tempC : hour.tempF }}°{{ unit }}</p>
     </div>
   </div>
@@ -63,24 +62,30 @@ const formatTime = (time: string) => {
 <style scoped>
 .forecast-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   gap: 10px;
   overflow-x: auto;
   width: 100%;
 }
 
 .forecast-item {
-  flex: 1;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
   padding: 10px;
   border-radius: 4px;
   min-width: 80px;
-  border: 1px solid var(--color-border);
+}
+
+img {
+  border-radius: 50px;
 }
 
 .time {
   font-weight: bold;
   font-size: 0.9rem;
+  color: var(--vt-c-text-light-2);
 }
 
 .temp {
