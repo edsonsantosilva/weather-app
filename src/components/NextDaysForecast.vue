@@ -81,7 +81,7 @@ const getDayName = (dateString: string) => {
   font-weight: var(--font-weight-semi-bold);
   margin-bottom: 10px;
   font-size: 0.75rem;
-  color: var(--vt-c-text-light-2);
+  color: var(--color-text-soft);
 }
 
 .temp {

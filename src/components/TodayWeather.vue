@@ -19,7 +19,7 @@ const currentWeather = computed(() => {
   <div
     v-if="weatherData && currentWeather"
     class="weather-info"
-    :class="getTemperatureColor(currentWeather.tempC, unit)"
+    :class="getTemperatureColor(currentWeather.tempC)"
   >
     <div class="weather-details">
       <img :src="currentWeather.condition.icon" :alt="currentWeather.condition.text" />

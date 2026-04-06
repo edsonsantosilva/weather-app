@@ -85,7 +85,7 @@ img {
 .time {
   font-weight: bold;
   font-size: 0.9rem;
-  color: var(--vt-c-text-light-2);
+  color: var(--color-text-soft);
 }
 
 .temp {

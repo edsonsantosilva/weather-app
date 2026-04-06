@@ -21,15 +21,21 @@
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
 
   --ds-selected-item-light: #C3E0FC;
-  --ds-selected-item-dark: #0b1a29;
+  --ds-selected-item-dark: #1a3959;
   --ds-hover-item-light: #E3F0FE;
-  --ds-hover-item-dark: #1a3959;
+  --ds-hover-item-dark: #0b1a29;
 
-  --coldest: #E3F0FE;
-  --cold: #C3E0FC;
-  --average: #CDF0EB;
-  --warm: #FFF4DA;
-  --hot: #FDD4D7;
+  --coldest-light: #E3F0FE;
+  --cold-light: #C3E0FC;
+  --average-light: #CDF0EB;
+  --warm-light: #FFF4DA;
+  --hot-light: #FDD4D7;
+
+  --coldest-dark: #1e293b;
+  --cold-dark: #1e3a8a;
+  --average-dark: #065f46;
+  --warm-dark: #854d0e;
+  --hot-dark: #991b1b;
 }
 
 /* semantic color variables for this project */
@@ -43,6 +49,7 @@
 
   --color-heading: var(--vt-c-text-light-1);
   --color-text: var(--vt-c-text-light-1);
+  --color-text-soft: var(--vt-c-text-light-2);
 
   --section-gap: 160px;
 
@@ -55,11 +62,11 @@
   --color-selected-city: var(--ds-selected-item-light);
   --color-hover-city: var(--ds-hover-item-light);
 
-  --color-coldest: var(--coldest);
-  --color-cold: var(--cold);
-  --color-average: var(--average);
-  --color-warm: var(--warm);
-  --color-hot: var(--hot);
+  --color-coldest: var(--coldest-light);
+  --color-cold: var(--cold-light);
+  --color-average: var(--average-light);
+  --color-warm: var(--warm-light);
+  --color-hot: var(--hot-light);
 
   --font-weight-semi-bold: 600;
 }
@@ -73,16 +80,23 @@
   --color-border-hover: var(--vt-c-divider-dark-1);
 
   --color-heading: var(--vt-c-text-dark-1);
-  --color-text: red;
+  --color-text: var(--vt-c-text-dark-1);
+  --color-text-soft: var(--vt-c-text-dark-2);
 
   --color-card-background: var(--vt-c-black-soft);
   --color-card-shadow: rgba(0, 0, 0, 0.5);
   --color-item-background: var(--vt-c-black-mute);
-  --color-link: #00bd7e;
-  --color-link-hover: #00e096;
+  --color-link: #42d392;
+  --color-link-hover: #35eb9a;
 
   --color-selected-city: var(--ds-selected-item-dark);
   --color-hover-city: var(--ds-hover-item-dark);
+
+  --color-coldest: var(--coldest-dark);
+  --color-cold: var(--cold-dark);
+  --color-average: var(--average-dark);
+  --color-warm: var(--warm-dark);
+  --color-hot: var(--hot-dark);
 }
 
 *,
