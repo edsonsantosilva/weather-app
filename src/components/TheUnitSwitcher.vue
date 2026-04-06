@@ -30,7 +30,6 @@ const { unit, toggleUnit } = useTemperatureUnit()
   align-items: center;
   gap: 4px;
   font-weight: bold;
-  box-shadow: 0 2px 8px var(--color-card-shadow);
   transition: all 0.3s ease;
 }
 

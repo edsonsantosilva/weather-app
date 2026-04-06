@@ -57,15 +57,21 @@ onBeforeMount(() => {
   display: flex;
   margin-top: 2rem;
   gap: 1rem;
-  width: 100%;
-  justify-content: stretch;
+}
+
+.today-weather,
+.forecast {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.forecast {
+  width: 70%;
 }
 
 .today-weather {
-  display: flex;
-  flex-grow: 1;
-  width: 50%;
-  height: 100%;
+  width: 30%
 }
 
 .coldest {

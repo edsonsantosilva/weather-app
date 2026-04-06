@@ -66,6 +66,7 @@ const formatTime = (time: string) => {
   justify-content: space-between;
   gap: 10px;
   overflow-x: auto;
+  width: 100%;
 }
 
 .forecast-item {

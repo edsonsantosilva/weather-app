@@ -16,9 +16,7 @@ onMounted(() => {
 
 <template>
   <div class="theme-switcher">
-    <button @click="toggleTheme">
-      Switch to {{ theme === 'light' ? 'Dark' : 'Light' }} Mode
-    </button>
+    <button @click="toggleTheme">Switch to {{ theme === 'light' ? 'Dark' : 'Light' }} Mode</button>
   </div>
 </template>
 
@@ -28,16 +26,19 @@ onMounted(() => {
 }
 
 button {
-  padding: 8px 16px;
-  cursor: pointer;
-  background-color: var(--color-background-soft);
-  color: var(--color-text);
+  background: var(--color-card-background);
   border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 12px;
   border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   transition: all 0.3s ease;
 }
 
 button:hover {
-  background-color: var(--color-border-hover);
+  border-color: var(--color-link);
 }
 </style>

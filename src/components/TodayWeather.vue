@@ -8,26 +8,48 @@ const { unit } = useTemperatureUnit()
 const { weatherData } = defineProps<{
   weatherData: WeatherInformation | null
 }>()
+
+const currentWeather = weatherData?.current
 </script>
 
 <template>
-  <div v-if="weatherData" class="weather-info" :class="getTemperatureColor(weatherData.current.tempC, unit)">
-    <h2>{{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
+  <div
+    v-if="weatherData && currentWeather"
+    class="weather-info"
+    :class="getTemperatureColor(currentWeather.tempC, unit)"
+  >
+    <div class="weather-details">
+      <img :src="currentWeather.condition.icon" :alt="currentWeather.condition.text" />
+      <h2>{{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
+      <p class="condition">{{ currentWeather.condition.text }}</p>
+    </div>
     <div class="temp-now">
-      <span>{{ unit === 'C' ? weatherData.current.tempC : weatherData.current.tempF }}</span>
+      <span>{{ unit === 'C' ? currentWeather.tempC : currentWeather.tempF }}</span>
       <span class="unit">°{{ unit }}</span>
     </div>
-    <p class="condition">{{ weatherData.current.condition.text }}</p>
   </div>
   <div v-else>No weather data available</div>
 </template>
 
 <style scoped>
 .weather-info {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  padding: 0.5rem;
   border-radius: 8px;
   box-shadow: 0 2px 8px var(--color-card-shadow);
   color: var(--color-text);
+  width: 100%;
+  height: 100%;
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .temp-now {

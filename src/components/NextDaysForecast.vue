@@ -55,7 +55,7 @@ const getDayName = (dateString: string) => {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 20px;
+  width: 100%;
 }
 
 .forecast-box {
