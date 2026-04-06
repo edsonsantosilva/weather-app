@@ -2,6 +2,9 @@
 import type { Hour, WeatherInformation } from '@/types/WeatherTypes.ts'
 import { computed } from 'vue'
 import { getTemperatureColor } from '@/utils/tempUtils.ts'
+import { useTemperatureUnit } from '@/composables/useTemperatureUnit'
+
+const { unit } = useTemperatureUnit()
 
 const { weatherData } = defineProps<{
   weatherData: WeatherInformation | null
@@ -45,8 +48,8 @@ const formatTime = (time: string) => {
     <div class="current-weather">
       <h2>{{ weatherData.location.name }}, {{ weatherData.location.region }}</h2>
       <div class="temp-now">
-        <span class="value">{{ weatherData.current.tempC }}</span>
-        <span class="unit">°C</span>
+        <span class="value">{{ unit === 'C' ? weatherData.current.tempC : weatherData.current.tempF }}</span>
+        <span class="unit">°{{ unit }}</span>
       </div>
       <p class="condition">{{ weatherData.current.condition.text }}</p>
     </div>
@@ -60,7 +63,7 @@ const formatTime = (time: string) => {
       >
         <p class="time">{{ index === 0 ? 'Now' : formatTime(hour.time) }}</p>
         <img :src="hour.condition.icon" :alt="hour.condition.text" />
-        <p class="temp">{{ hour.tempC }}°C</p>
+        <p class="temp">{{ unit === 'C' ? hour.tempC : hour.tempF }}°{{ unit }}</p>
       </div>
     </div>
   </div>

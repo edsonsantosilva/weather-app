@@ -2,6 +2,9 @@
 import type { WeatherInformation } from '@/types/WeatherTypes.ts'
 import { computed } from 'vue'
 import { getTemperatureColor } from '@/utils/tempUtils.ts'
+import { useTemperatureUnit } from '@/composables/useTemperatureUnit'
+
+const { unit } = useTemperatureUnit()
 
 const NOW = new Date()
 
@@ -40,8 +43,8 @@ const getDayName = (dateString: string) => {
     >
       <p class="label">{{ getDayName(day.date) }}</p>
       <div class="temp">
-        <span class="value">{{ day?.avgtempC }}</span>
-        <span class="unit">°C</span>
+        <span class="value">{{ unit === 'C' ? day?.avgtempC : day?.avgtempF }}</span>
+        <span class="unit">°{{ unit }}</span>
       </div>
     </div>
   </div>

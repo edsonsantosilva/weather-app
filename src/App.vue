@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
 import TheThemeSwitcher from './components/TheThemeSwitcher.vue'
+import TheUnitSwitcher from './components/TheUnitSwitcher.vue'
 import TheGreeting from '@/components/TheGreeting.vue'
 </script>
 
 <template>
-  <TheThemeSwitcher />
+  <div class="settings">
+    <TheThemeSwitcher />
+    <TheUnitSwitcher />
+  </div>
   <TheGreeting />
-
   <header>
+
+
     <nav>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/about">About</RouterLink>
@@ -24,6 +29,12 @@ header {
   max-height: 100vh;
   width: 100%;
   display: flex;
+}
+
+.settings {
+  display: flex;
+  justify-content: flex-end;
+  gap: 2rem;
 }
 
 nav {
