@@ -63,23 +63,31 @@ onBeforeMount(() => {
 <style>
 .weather-wrapper {
   display: flex;
+  flex-direction: column;
   margin-top: 2rem;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .today-weather,
 .forecast {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
+  width: 100%;
 }
 
-.forecast {
-  width: 80%;
-}
+@media (min-width: 1024px) {
+  .weather-wrapper {
+    flex-direction: row;
+  }
 
-.today-weather {
-  width: 20%;
+  .forecast {
+    width: 75%;
+  }
+
+  .today-weather {
+    width: 25%;
+  }
 }
 
 .coldest {

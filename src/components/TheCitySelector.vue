@@ -61,26 +61,30 @@ const clearAll = () => {
 <style scoped>
 .city-selector {
   display: flex;
-  flex-direction: row;
-  gap: 1rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: transparent;
 }
 
 .city-wrapper {
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  overflow: auto;
-  width: 70%;
+  overflow-x: auto;
+  width: 100%;
+  padding-bottom: 0.5rem;
+  scrollbar-width: thin;
 }
 
 .add-city-form {
   display: flex;
   gap: 0.5rem;
   align-items: center;
-  width: 30%;
+  width: 100%;
 }
 
 input {
+  flex: 1;
   background: var(--color-card-background);
   border: 1px solid var(--color-border);
   color: var(--color-text);
@@ -88,6 +92,22 @@ input {
   border-radius: 8px;
   outline: none;
   transition: border-color 0.3s ease;
+  min-width: 0;
+}
+
+@media (min-width: 1024px) {
+  .city-selector {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .city-wrapper {
+    width: 70%;
+  }
+
+  .add-city-form {
+    width: 30%;
+  }
 }
 
 input:focus {

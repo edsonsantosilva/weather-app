@@ -55,33 +55,67 @@ const getDayName = (dateString: string) => {
 <style scoped>
 .forecast-wrapper {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   gap: 1rem;
   width: 100%;
 }
 
 .forecast-box {
-  flex: 1;
-  padding: 15px;
-  border-radius: 30px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-radius: 20px;
   color: var(--color-text);
+  width: 100%;
 }
 
-.unknown {
-  background-color: var(--color-card-background);
+.forecast-box img {
+  width: 40px;
 }
 
 .label {
+  flex: 1;
+  text-align: left;
+  margin-left: 1rem;
   font-weight: var(--font-weight-semi-bold);
   font-size: 1rem;
 }
 
 .condition-label {
-  font-weight: var(--font-weight-semi-bold);
-  margin-bottom: 10px;
-  font-size: 0.75rem;
-  color: var(--color-text-soft);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .forecast-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .forecast-box {
+    flex: 1;
+    flex-direction: column;
+    padding: 15px;
+    border-radius: 30px;
+    text-align: center;
+  }
+
+  .forecast-box img {
+    width: auto;
+  }
+
+  .label {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .condition-label {
+    display: block;
+    font-weight: var(--font-weight-semi-bold);
+    margin-bottom: 10px;
+    font-size: 0.75rem;
+    color: var(--color-text-soft);
+  }
 }
 
 .temp {

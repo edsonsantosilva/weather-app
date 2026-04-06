@@ -36,7 +36,9 @@ button {
   align-items: center;
   gap: 4px;
   transition: all 0.3s ease;
-  height: 2rem;
+  height: 2.25rem;
+  font-size: 0.9rem;
+  white-space: nowrap;
 }
 
 button:hover {

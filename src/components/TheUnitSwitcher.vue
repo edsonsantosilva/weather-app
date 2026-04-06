@@ -31,6 +31,7 @@ const { unit, toggleUnit } = useTemperatureUnit()
   gap: 4px;
   font-weight: bold;
   transition: all 0.3s ease;
+  height: 2.25rem;
 }
 
 .unit-btn:hover {
