@@ -36,6 +36,7 @@ button {
   align-items: center;
   gap: 4px;
   transition: all 0.3s ease;
+  height: 2rem;
 }
 
 button:hover {

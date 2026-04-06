@@ -1,7 +1,8 @@
 <script setup lang="ts"></script>
 <template>
   <div class="item">
-    <slot></slot> - <slot name="icon"></slot>
+    <slot></slot>
+    <slot name="icon"></slot>
   </div>
 </template>
 
@@ -9,6 +10,7 @@
 .item {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
   margin-top: 1rem;
   padding: 0.5rem 1rem;
